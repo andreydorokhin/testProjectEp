@@ -1,43 +1,56 @@
 package ua.bytes.config;
 
+import com.google.gson.Gson;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
+
+
 
 public class Driver {
     private static Driver INSTANCE = null;
+    private Settings settings;
+    Gson gson = new Gson();
 
     private WebDriver driver = null;
 
-    private static final String browserType = "chrome";
-    private static final String baseURL = "https://www.google.com";
+    private Driver() throws NullPointerException, IOException {
+        gson.serializeNulls();
+        String json = new String(Files.readAllBytes(Paths.get("config.json")));
+        Settings settings = gson.fromJson(json, Settings.class);
+        System.out.println(settings.toString());
 
-    private Driver() throws NullPointerException {
-        if (browserType.equalsIgnoreCase("mozilla")) {
-            System.setProperty("webdriver.gecko.driver", "D:\\Projects\\Auto_QA\\WebDriversForSelenium\\geckodriver.exe");
+        if (settings.getBrowser().equalsIgnoreCase("mozilla")) {
+            System.setProperty("webdriver.gecko.driver", "drivers\\geckodriver.exe");
             driver = new FirefoxDriver();
-        }else if (browserType.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver", "D:\\Projects\\Auto_QA\\WebDriversForSelenium\\chromedriver.exe");
+        }else if (settings.getBrowser().equalsIgnoreCase("chrome")){
+            System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
             driver = new ChromeDriver();
-        }else if (browserType.equalsIgnoreCase("edge")){
-            System.setProperty("webdriver.edge.driver", "D:\\Projects\\Auto_QA\\WebDriversForSelenium\\MicrosoftWebDriver.exe");
+        }else if (settings.getBrowser().equalsIgnoreCase("edge")){
+            System.setProperty("webdriver.edge.driver", "drivers\\MicrosoftWebDriver.exe");
             driver = new EdgeDriver();
         }
 
         if (driver != null) {
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.manage().window().maximize();
+            //        driver.manage().deleteAllCookies();
         }
-//        Instance.navigate().to(baseURL)
-//        driver.manage().deleteAllCookies();
     }
 
-    public static Driver getDriver(){
+    public static Driver getDriver() {
         if(INSTANCE == null){
-            INSTANCE = new Driver();
+            try {
+                INSTANCE = new Driver();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return INSTANCE;
     }
@@ -46,17 +59,7 @@ public class Driver {
         return driver;
     }
 
-    public static void closeBrowser() {
-        System.out.println("Browser " + browserType + " has been closed");
-
-        INSTANCE.getWebDriver().close();
-        INSTANCE = null;
-    }
-
-    public static void quitBrowser() {
-        System.out.println("Browser " + browserType + " has been quit");
-
-        INSTANCE.getWebDriver().quit();
-        INSTANCE = null;
+    public Settings getSettings() {
+        return settings;
     }
 }

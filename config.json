@@ -1,0 +1,5 @@
+{
+  "baseURL": "https://google.com.co.in",
+  "domain": "testautomationday.com",
+  "browser": "chrome"
+}
