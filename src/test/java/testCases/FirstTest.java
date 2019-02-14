@@ -5,15 +5,19 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import org.testng.annotations.Test;
+import ua.bytes.pageOpgects.AbstractPage;
+import ua.bytes.pageOpgects.ResultPage;
 
 public class FirstTest extends BaseTest{
 
-    @Test
-    public void verifyTitleContainsWord() throws InterruptedException {
-        String title = mainPage.showResults("automation").getTextBySelector(By.cssSelector(".apphub_AppName"));
-        Allure.addAttachment("check of Header","Header contains 'automation'");
-
-        Assert.assertTrue(title.toLowerCase().contains("automation"),"Header contains 'automation'");
-    }
+//    @Test
+//    public void verifyTitleContainsWord() throws InterruptedException {
+//        ResultPage resultPage = mainPage.navigateTo(mainPage.settings.getBaseURL()).showResults("automation");
+//
+//        String title = resultPage.getTextBySelector(By.cssSelector(".apphub_AppName"));
+//        Allure.addAttachment("check of Header","Header contains 'automation'");
+//
+//        Assert.assertTrue(title.toLowerCase().contains("automation"),"Header contains 'automation'");
+//    }
 
 }

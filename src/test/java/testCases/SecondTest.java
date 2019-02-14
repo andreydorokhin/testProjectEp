@@ -12,6 +12,7 @@ public class SecondTest extends BaseTest{
 
         Boolean result = resultPage.isExpectDomainOnSearchingResult("https://www.testautomationday.com", 5);
 
+        System.out.println("+++++++++++++++++++++ result ++++========"+result);
         Assert.assertTrue(result);
     }
 

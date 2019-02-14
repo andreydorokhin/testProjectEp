@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ResultPage extends AbstractPage {
     private By firstLink = By.xpath("//div[@id='isearch']//a[1]/h3");
-    private By nextPageResultButton = By.xpath("//div[@id='navcnt']//span[2]");
+    private By nextPageResultButton = By.xpath("//*[@id=\"pnnext\"]/span[2]");
 
     public ResultPage(WebDriver webDriver) {
         super(webDriver);
@@ -26,12 +26,16 @@ public class ResultPage extends AbstractPage {
         return this;
     }
 
-    public boolean isExpectDomainOnSearchingResult(String expectedDomain, int numberOfResultPage) {
+    public boolean isExpectDomainOnSearchingResult(String expectedDomain, int numberOfResultPage) throws InterruptedException {
         boolean isExpectDomain = false;
 
-        for (int i = 0; i < numberOfResultPage; i++) {
+        for (int i = 1; i < numberOfResultPage; i++) {
             if (webDriver.getPageSource().contains(expectedDomain)) {
                 isExpectDomain = true;
+            }else {
+                showNextResultPage();
+
+                Thread.sleep(4000);
             }
         }
 
