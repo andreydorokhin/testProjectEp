@@ -4,7 +4,7 @@ public class Settings {
     private String baseURL;
     private String domain;
     private String browser;
-    private System detectedText;
+    private String detectedText;
 
 
     // Getter Methods
@@ -20,12 +20,12 @@ public class Settings {
         return browser;
     }
 
-    public System getDetectedText() {
+    public String getDetectedText() {
         return detectedText;
     }
 
     // Setter Methods
-    public void setDetectedText(System detectedText) {
+    public void setDetectedText(String detectedText) {
         this.detectedText = detectedText;
     }
 
