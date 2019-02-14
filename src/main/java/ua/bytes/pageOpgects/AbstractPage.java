@@ -6,7 +6,7 @@ import ua.bytes.config.Driver;
 import ua.bytes.config.Settings;
 
 public class AbstractPage {
-    protected static Driver driver;
+    protected static Driver driver = Driver.getDriver();
     protected WebDriver webDriver = driver.getWebDriver();
     private static Settings settings = driver.getSettings();
 
