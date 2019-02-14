@@ -40,7 +40,6 @@ public class Driver {
         if (driver != null) {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.manage().window().maximize();
-            //        driver.manage().deleteAllCookies();
         }
     }
 
