@@ -1,5 +1,5 @@
 {
-  "baseURL": "https://google.com.co.in",
+  "baseURL": "https://google.com",
   "domain": "testautomationday.com",
   "browser": "chrome",
   "detectedText": "automation"

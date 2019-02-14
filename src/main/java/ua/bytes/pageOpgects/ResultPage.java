@@ -12,11 +12,11 @@ public class ResultPage extends AbstractPage {
         super(webDriver);
     }
 
-    public ResultPage openFirstPage() {
+    public SitePage openFirstPage() {
         webDriver.findElement(firstLink).click();
         Allure.addAttachment("ResultPage click first link", "First link was clicked");
 
-        return new ResultPage(webDriver);
+        return new SitePage(webDriver);
     }
 
     public ResultPage showNextResultPage() {

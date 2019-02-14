@@ -10,14 +10,15 @@ import ua.bytes.pageOpgects.ResultPage;
 
 public class FirstTest extends BaseTest{
 
-//    @Test
-//    public void verifyTitleContainsWord() throws InterruptedException {
-//        ResultPage resultPage = mainPage.navigateTo(mainPage.settings.getBaseURL()).showResults("automation");
-//
-//        String title = resultPage.getTextBySelector(By.cssSelector(".apphub_AppName"));
-//        Allure.addAttachment("check of Header","Header contains 'automation'");
-//
-//        Assert.assertTrue(title.toLowerCase().contains("automation"),"Header contains 'automation'");
-//    }
+    private By firsLinkXpath = By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/div[1]/a[1]/h3");
+
+    @Test
+    public void verifyTitleContainsWord() throws InterruptedException {
+        ResultPage resultPage = mainPage.navigateTo("https://www.google.com/").showResults("automation");
+        String title = resultPage.openFirstPage().getTextBySelector(firsLinkXpath);
+        Allure.addAttachment("check of Header","Header contains 'automation'");
+
+        Assert.assertTrue(title.toLowerCase().contains("automation"),"Header contains 'automation'");
+    }
 
 }
