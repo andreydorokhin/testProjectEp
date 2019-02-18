@@ -34,8 +34,6 @@ public class ResultPage extends AbstractPage {
                 isExpectDomain = true;
             }else {
                 showNextResultPage();
-
-                Thread.sleep(4000);
             }
         }
 

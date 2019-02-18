@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import org.testng.annotations.Test;
-import ua.bytes.pageOpgects.AbstractPage;
 import ua.bytes.pageOpgects.ResultPage;
 
 public class FirstTest extends BaseTest{
