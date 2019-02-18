@@ -15,17 +15,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private static Driver INSTANCE = null;
-    private Settings settings;
+    private Settings settings = serializeSettings();
     Gson gson = new Gson();
 
     private WebDriver driver = null;
 
     private Driver() throws NullPointerException, IOException {
-        gson.serializeNulls();
-        String json = new String(Files.readAllBytes(Paths.get("config.json")));
-        Settings settings = gson.fromJson(json, Settings.class);
-        System.out.println(settings.toString());
-
         if (settings.getBrowser().equalsIgnoreCase("mozilla")) {
             System.setProperty("webdriver.gecko.driver", "drivers\\geckodriver.exe");
             driver = new FirefoxDriver();
@@ -56,6 +51,15 @@ public class Driver {
 
     public WebDriver getWebDriver() {
         return driver;
+    }
+
+    private Settings serializeSettings () throws NullPointerException, IOException{
+        gson.serializeNulls();
+        String json = new String(Files.readAllBytes(Paths.get("config.json")));
+        Settings settings = gson.fromJson(json, Settings.class);
+        System.out.println(settings.toString());
+
+        return settings;
     }
 
     public Settings getSettings() {
