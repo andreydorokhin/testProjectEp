@@ -4,7 +4,7 @@ import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 
 public class ResultPage extends AbstractPage {
-    private By firstLink = By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/div[1]/a[1]/h3");
+    private By firstLink = By.xpath("//*[@id=\"rso\"]//a[1]/h3");
     private By nextPageResultButton = By.xpath("//*[@id=\"pnnext\"]/span[2]");
 
     public SitePage openFirstPage() {
