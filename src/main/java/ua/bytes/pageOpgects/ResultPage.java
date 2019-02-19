@@ -4,11 +4,11 @@ import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 
 public class ResultPage extends AbstractPage {
-    private By firstLink = By.xpath("//*[@id=\"rso\"]//a[1]/h3");
-    private By nextPageResultButton = By.xpath("//*[@id=\"pnnext\"]/span[2]");
+    private By links = By.xpath("//h3");
+    private By nextPageResultButton = By.id("pnnext");
 
     public SitePage openFirstPage() {
-        driver.findElement(firstLink).click();
+        driver.findElements(links).get(0).click();
         Allure.addAttachment("ResultPage click first link", "First link was clicked");
 
         return new SitePage();
