@@ -8,12 +8,10 @@ public class SecondTest extends BaseTest{
 
     @Test
     public void TestTwo() throws InterruptedException {
-        ResultPage resultPage = mainPage.navigateTo("https://www.google.com/").showResults("automation");
+        ResultPage resultPage = mainPage.navigateTo(settings.getBaseURL()).showResults(settings.getDetectedText());
 
-        Boolean result = resultPage.isExpectDomainOnSearchingResult("https://www.testautomationday.com", 5);
+        Boolean result = resultPage.isExpectDomainOnSearchingResult(settings.getDomain(), 5);
 
-        System.out.println("+++++++++++++++++++++ result ++++========"+result);
         Assert.assertTrue(result);
     }
-
 }

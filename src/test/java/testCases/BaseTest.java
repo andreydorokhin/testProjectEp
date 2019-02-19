@@ -1,30 +1,36 @@
 package testCases;
 
-import io.qameta.allure.Allure;
-import org.openqa.selenium.By;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import ua.bytes.config.Driver;
+import ua.bytes.config.DriverProvider;
+import ua.bytes.config.Settings;
+import ua.bytes.config.SettingsProvider;
 import ua.bytes.pageOpgects.MainPage;
 
-import java.io.IOException;
 
 public class BaseTest {
-    private Driver driver = Driver.getDriver();
-    protected MainPage mainPage = new MainPage(driver.getWebDriver());
+    private DriverProvider driverProvider = DriverProvider.get();
+    protected MainPage mainPage = new MainPage();
+    protected Settings settings = SettingsProvider.getInstance().getSettings();
 
     @BeforeClass
-    public void init() throws IOException {
+    public void init() {
         long id = Thread.currentThread().getId();
-        System.out.println("Before test-method. Thread id is: " + id);
+        System.out.println("+++++++++++++++++Before test-method. Thread id is: " + id);
+
     }
 
-    @AfterClass
-    public void closebrowser() {
+    @AfterSuite
+    public void closebrowser() throws InterruptedException {
         long id = Thread.currentThread().getId();
-        System.out.println("Before test-method. Thread id is: " + id);
+        System.out.println("-----------------After test-method. Thread id is: " + id);
+
+        try {
+            if(driverProvider.getWebDriver() != null)
+                driverProvider.getWebDriver().quit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

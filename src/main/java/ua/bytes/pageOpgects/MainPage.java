@@ -2,22 +2,19 @@ package ua.bytes.pageOpgects;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class MainPage extends AbstractPage {
 
-    public MainPage(WebDriver webDriver) {
-        super(webDriver);
-    }
+    private By textbox = By.name("q");
 
     public ResultPage showResults(String searchingText) {
-        webDriver.findElement(By.name("q")).sendKeys(searchingText);
-        webDriver.findElement(By.name("q")).submit();
+        driver.findElement(textbox).sendKeys(searchingText);
+        driver.findElement(textbox).submit();
 
-        System.out.println("word 'automation' Entered in Textbox and Submited");
-        Allure.addAttachment("MainPage Google.com", "word "+ searchingText + " Entered in Textbox and Submited");
+        System.out.println("word '"+settings.getDetectedText()+"' Entered in Textbox and Submited");
+        Allure.addAttachment("MainPage "+settings.getBaseURL()+"", "word "+ searchingText + " Entered in Textbox and Submited");
 
-        return new ResultPage(this.webDriver);
+        return new ResultPage();
     }
 
     public MainPage navigateTo(String stringUrl) {

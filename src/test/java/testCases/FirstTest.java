@@ -1,7 +1,6 @@
 package testCases;
 
 import io.qameta.allure.Allure;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import org.testng.annotations.Test;
@@ -11,11 +10,11 @@ public class FirstTest extends BaseTest{
 
     @Test
     public void verifyTitleContainsWord() throws InterruptedException {
-        ResultPage resultPage = mainPage.navigateTo("https://www.google.com/").showResults("automation");
-        String title = resultPage.openFirstPage().getTextBySelector(By.cssSelector(".apphub_AppName"));
-        Allure.addAttachment("check of Header","Header contains 'automation'");
+        ResultPage resultPage = mainPage.navigateTo(settings.getBaseURL()).showResults(settings.getDetectedText());
+        String title = resultPage.openFirstPage().getTitle();
+        Allure.addAttachment("check of Header","Header contains '" + settings.getDetectedText() + "'");
 
-        Assert.assertTrue(title.toLowerCase().contains("automation"),"Header contains 'automation'");
+        Assert.assertTrue(title.toLowerCase().contains(settings.getDetectedText()),"Header contains '" + settings.getDetectedText() +"'");
     }
 
 }

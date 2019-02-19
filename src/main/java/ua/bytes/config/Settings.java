@@ -6,7 +6,6 @@ public class Settings {
     private String browser;
     private String detectedText;
 
-
     // Getter Methods
     public String getBaseURL() {
         return baseURL;
