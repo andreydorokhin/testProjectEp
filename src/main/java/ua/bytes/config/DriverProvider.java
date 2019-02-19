@@ -1,5 +1,6 @@
 package ua.bytes.config;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,13 +18,13 @@ public class DriverProvider {
 
     private DriverProvider() throws IOException {
         if (settings.getBrowser().equalsIgnoreCase("mozilla")) {
-            System.setProperty("webdriver.gecko.driver", "drivers\\geckodriver.exe");
+            WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }else if (settings.getBrowser().equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         }else if (settings.getBrowser().equalsIgnoreCase("edge")){
-            System.setProperty("webdriver.edge.driver", "drivers\\MicrosoftWebDriver.exe");
+            WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }
 
