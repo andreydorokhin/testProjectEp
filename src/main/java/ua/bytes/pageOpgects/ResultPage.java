@@ -44,6 +44,7 @@ public class ResultPage extends AbstractPage {
         for (int i = 1; i < numberOfResultPage; i++) {
             if (driver.getPageSource().contains(expectedDomain)) {
                 isExpectDomain = true;
+                break;
             }else {
                 showNextResultPage();
             }
