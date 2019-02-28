@@ -23,15 +23,6 @@
 
     <dependencies>
         <!-- TestNG begin -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- TestNG end -->
-
-        <!-- TestNG begin -->
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -68,6 +59,30 @@
             <version>3.3.0</version>
         </dependency>
 
+        <!-- cucumber with testng begin -->
+        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-testng -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!-- cucumber with testng end -->
+
+        <!-- TestNG begin -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- TestNG end -->
     </dependencies>
 
     <build>
@@ -126,6 +141,15 @@
                                 <value>${project.build.directory}/allure-results</value>
                             </property>
                         </systemProperties>
+
+                        <properties>
+                            <!--  plugin configuation for parallel execution BEGIN -->
+                            <property>
+                                <name>dataproviderthreadcount</name>
+                                <value>2</value>
+                            </property>
+                            <!--  plugin configuation for parallel execution END -->
+                        </properties>
                     </configuration>
                     <dependencies>
                         <dependency>
