@@ -24,12 +24,17 @@ public class MainPage extends AbstractPage {
 
     private By textbox = By.name("q");
 
-    public ResultPage showResults(String searchingText) {
-        driver.findElement(textbox).sendKeys(searchingText);
+    public MainPage sendKeys() {
+        driver.findElement(textbox).sendKeys(settings.getDetectedText());
+
+        return this;
+    }
+
+    public ResultPage showResults() {
         driver.findElement(textbox).submit();
 
         System.out.println("word '"+settings.getDetectedText()+"' Entered in Textbox and Submited");
-        Allure.addAttachment("MainPage "+settings.getBaseURL()+"", "word "+ searchingText + " Entered in Textbox and Submited");
+        Allure.addAttachment("MainPage "+settings.getBaseURL()+"", "word "+ settings.getDetectedText() + " Entered in Textbox and Submited");
 
         return new ResultPage();
     }

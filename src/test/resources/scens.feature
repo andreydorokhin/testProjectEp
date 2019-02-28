@@ -6,9 +6,5 @@ Feature: User check detected word on the title of first site from result searchi
     Given User opened search page
     When User inserts detected word
     Then results of request appear on the page
-
-        And User clicks first item
-
-        Given defined site is opened
-        When User research allocated title of the page
-        Then the title must contain detected word
+        Then defined site is opened after clicking first item
+        Then the title of the page must contain detected word

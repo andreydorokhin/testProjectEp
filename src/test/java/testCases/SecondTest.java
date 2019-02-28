@@ -25,7 +25,7 @@ public class SecondTest extends BaseTest{
 
     @Test
     public void TestTwo() throws InterruptedException {
-        ResultPage resultPage = mainPage.navigateTo(settings.getBaseURL()).showResults(settings.getDetectedText());
+        ResultPage resultPage = mainPage.navigateTo(settings.getBaseURL()).showResults();
 
         Boolean result = resultPage.isExpectDomainOnSearchingResult(settings.getDomain(), 5);
 

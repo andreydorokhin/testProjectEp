@@ -27,7 +27,10 @@ public class FirstTest extends BaseTest{
 
     @Test
     public void verifyTitleContainsWord() throws InterruptedException {
-        ResultPage resultPage = mainPage.navigateTo(settings.getBaseURL()).showResults(settings.getDetectedText());
+        mainPage.navigateTo(settings.getBaseURL());
+        mainPage.sendKeys();
+        ResultPage resultPage = mainPage.showResults();
+
         String title = resultPage.openFirstPage().getTitle();
         Allure.addAttachment("check of Header","Header contains '" + settings.getDetectedText() + "'");
 
