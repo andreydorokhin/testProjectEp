@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
 import org.testng.Assert;
 import ua.bytes.config.DriverProvider;
 import ua.bytes.config.Settings;
@@ -24,35 +25,23 @@ public class FirstScenarioStepdefs{
     private SitePage sitePage;
     private Settings settings = SettingsProvider.getInstance().getSettings();
 
-
-    @After
-    public void before(Scenario scenario) {
-        System.out.println("------------------------------");
-        System.out.println(scenario.getName() + " Status - " + scenario.getStatus());
-        System.out.println("------------------------------");
-    }
-
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            // Take a screenshot...
-            final byte[] screenshot = ((TakesScreenshot) driverProvider.getWebDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
+            try {
+                byte[] screenshot = ((TakesScreenshot) driverProvider.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+                scenario.embed(screenshot, "image/png" );
+                scenario.write("URL at failure: " + driverProvider.getWebDriver().getCurrentUrl());
+            } catch (WebDriverException wde) {
+                scenario.write("Embed Failed " + wde.getMessage());
+            } catch (ClassCastException cce) {
+                cce.printStackTrace();
+            }
         }
     }
 
-    @After
-    public void closebrowser() throws InterruptedException {
-        try {
-            if(driverProvider.getWebDriver() != null)
-                driverProvider.getWebDriver().quit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     @Given("^User opened search page$")
     public void user_opened_search_page() throws Throwable {
-        System.out.println("User opened search page");
         mainPage = new MainPage();
         mainPage.navigateTo(settings.getBaseURL());
     }
