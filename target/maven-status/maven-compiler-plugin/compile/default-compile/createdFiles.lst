@@ -1,0 +1,7 @@
+ua\bytes\config\SettingsProvider.class
+ua\bytes\pageOpgects\MainPage.class
+ua\bytes\pageOpgects\SitePage.class
+ua\bytes\pageOpgects\AbstractPage.class
+ua\bytes\config\DriverProvider.class
+ua\bytes\pageOpgects\ResultPage.class
+ua\bytes\config\Settings.class
