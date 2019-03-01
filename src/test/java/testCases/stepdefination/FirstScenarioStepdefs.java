@@ -25,21 +25,6 @@ public class FirstScenarioStepdefs{
     private SitePage sitePage;
     private Settings settings = SettingsProvider.getInstance().getSettings();
 
-    @After
-    public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
-            try {
-                byte[] screenshot = ((TakesScreenshot) driverProvider.getWebDriver()).getScreenshotAs(OutputType.BYTES);
-                scenario.embed(screenshot, "image/png" );
-                scenario.write("URL at failure: " + driverProvider.getWebDriver().getCurrentUrl());
-            } catch (WebDriverException wde) {
-                scenario.write("Embed Failed " + wde.getMessage());
-            } catch (ClassCastException cce) {
-                cce.printStackTrace();
-            }
-        }
-    }
-
     @Given("^User opened search page$")
     public void user_opened_search_page() throws Throwable {
         mainPage = new MainPage();
