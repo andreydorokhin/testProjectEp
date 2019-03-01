@@ -1,4 +1,3 @@
-@all
 Feature: User check detected word on the title of first site from result searching by given word
 
     Scenario: As user I want to verify title contains detected word
