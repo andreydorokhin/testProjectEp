@@ -23,8 +23,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ResultPage extends AbstractPage {
-    private By links = By.xpath("//h3");
-    private By nextPageResultButton = By.id("pnnext");
+    private final By links = By.xpath("//h3");
+    private final By nextPageResultButton = By.id("pnnext");
 
     public void waitPageLoaded () {
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -38,14 +38,13 @@ public class ResultPage extends AbstractPage {
         return new SitePage();
     }
 
-    public ResultPage showNextResultPage() {
+    private void showNextResultPage() {
         driver.findElement(nextPageResultButton).click();
         Allure.addAttachment("ResultPage click next page button", "next result page was clicked");
 
-        return this;
     }
 
-    public boolean isExpectDomainOnSearchingResult(String expectedDomain, int numberOfResultPage) throws InterruptedException {
+    public boolean isExpectDomainOnSearchingResult(String expectedDomain, int numberOfResultPage) {
         boolean isExpectDomain = false;
 
         for (int i = 1; i < numberOfResultPage; i++) {

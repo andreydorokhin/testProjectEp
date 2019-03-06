@@ -22,12 +22,11 @@ import org.openqa.selenium.By;
 
 public class MainPage extends AbstractPage {
 
-    private By textbox = By.name("q");
+    private final By textbox = By.name("q");
 
-    public MainPage sendKeys() {
+    public void sendKeys() {
         driver.findElement(textbox).sendKeys(settings.getDetectedText());
 
-        return this;
     }
 
     public ResultPage showResults() {
@@ -39,9 +38,8 @@ public class MainPage extends AbstractPage {
         return new ResultPage();
     }
 
-    public MainPage navigateTo(String stringUrl) {
+    public void navigateTo(String stringUrl) {
         super.navigateTo(stringUrl);
 
-        return this;
     }
 }

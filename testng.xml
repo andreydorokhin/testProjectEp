@@ -4,8 +4,7 @@
 <suite name="Test-class Suite" parallel="classes" thread-count="1" >
 <test name="Test-class test" >
     <classes>
-        <class name="testCases.FirstTest" />
-        <class name="testCases.SecondTest" />
+
     </classes>
 </test>
 </suite>

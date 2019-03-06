@@ -24,8 +24,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class SettingsProvider {
-    private static SettingsProvider ourInstance = new SettingsProvider();
-    private Settings settings;
+    private static final SettingsProvider ourInstance = new SettingsProvider();
+    private final Settings settings;
 
     public static SettingsProvider getInstance() {
         return ourInstance;
@@ -33,7 +33,7 @@ public class SettingsProvider {
 
     private SettingsProvider() {
         Gson gson=new Gson();
-        gson.serializeNulls();
+//        gson.serializeNulls();
         String json = null;
 
         try {

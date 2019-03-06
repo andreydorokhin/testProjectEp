@@ -23,12 +23,11 @@ import ua.bytes.config.Settings;
 import ua.bytes.config.SettingsProvider;
 
 public class AbstractPage {
-    protected WebDriver driver = DriverProvider.get().getWebDriver();
-    public static Settings settings = SettingsProvider.getInstance().getSettings();
+    final WebDriver driver = DriverProvider.get().getWebDriver();
+    public final static Settings settings = SettingsProvider.getInstance().getSettings();
 
-    public AbstractPage navigateTo(String stringUrl) {
+    void navigateTo(String stringUrl) {
         driver.get(stringUrl);
 
-        return this;
     }
 }

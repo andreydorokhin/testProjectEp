@@ -23,17 +23,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 
 
 public class DriverProvider {
     private static DriverProvider INSTANCE = null;
-    private Settings settings = SettingsProvider.getInstance().getSettings();
     private WebDriver driver = null;
 
-    private DriverProvider() throws IOException {
+    private DriverProvider() {
+        Settings settings = SettingsProvider.getInstance().getSettings();
         if (settings.getBrowser().equalsIgnoreCase("mozilla")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
@@ -54,11 +52,7 @@ public class DriverProvider {
 
     public static DriverProvider get() {
         if(INSTANCE == null){
-            try {
-                INSTANCE = new DriverProvider();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            INSTANCE = new DriverProvider();
         }
         return INSTANCE;
     }
