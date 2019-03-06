@@ -1,14 +1,18 @@
-Feature: User check detected word on the title of first site from result searching by given word
 
-    Scenario: As user I want to verify title contains detected word
+Feature: Search Specific Text
+    Description: This function will check the action that the particular text is looking for
 
-        Given User opened search page
-        When User inserts detected word and chooses first item from searching results
-        Then the title of the opend page must contain detected word
+    Background: User got searching result
+        Given User navigates to the google page
+        When User submit searching word
+        Then Result page should be shown
 
+    Scenario: Navigate first link and find specific text in the title
+        Given User is on result page
+        When User navigates first link
+        Then Title must contain specific text
 
-    Scenario: As user I want to see detected link on one of the top five pages of search results
-
-        Given User opened search page
-        When User inserts detected word and clicks search buttom
-        Then detected link must be on one of the top five pages of search results
+    Scenario: find a specific link on the first pages of the search result
+        Given User is on result page
+        When User is searching specific link on results pages
+        Then detected link must be on the result page

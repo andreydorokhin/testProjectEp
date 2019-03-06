@@ -40,21 +40,4 @@ public class Settings {
         return detectedText;
     }
 
-    // Setter Methods
-    public void setDetectedText(String detectedText) {
-        this.detectedText = detectedText;
-    }
-
-    public void setBaseURL(String baseURL) {
-        this.baseURL = baseURL;
-    }
-
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
-
-    public void setBrowser(String browser)   {
-        this.browser = browser;
-    }
-
 }
