@@ -1,3 +1,2 @@
 cucumber\RunCucumberTest.class
-cucumber\Hooks.class
 testCases\stepdefination\FirstScenarioStepdefs.class

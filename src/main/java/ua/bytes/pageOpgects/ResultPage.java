@@ -19,10 +19,17 @@ package ua.bytes.pageOpgects;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ResultPage extends AbstractPage {
     private By links = By.xpath("//h3");
     private By nextPageResultButton = By.id("pnnext");
+
+    public void waitPageLoaded () {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(nextPageResultButton));
+    }
 
     public SitePage openFirstPage() {
         driver.findElements(links).get(0).click();
